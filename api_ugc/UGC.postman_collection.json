@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "96de9895-2ff9-46f6-9e54-52666bde4a98",
+		"name": "UGC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "produce",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"payload\": {\r\n    \"movie_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"user_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"event\": \"string\",\r\n    \"event_data\": \"string\",\r\n    \"event_timestamp\": 0\r\n  },\r\n  \"language\": \"string\",\r\n  \"timezone\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"version\": \"string\",\r\n  \"client_data\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/produce",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"produce"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "batch_produce_inner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n  \"payload\": {\r\n    \"movie_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"user_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"event_data\": \"string\",\r\n    \"event_timestamp\": 0\r\n  },\r\n  \"event_type\": \"movie_dislike\",\r\n  \"language\": \"string\",\r\n  \"timezone\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"version\": \"string\",\r\n  \"client_data\": \"string\"\r\n},\r\n{\r\n  \"payload\": {\r\n    \"movie_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"user_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"event_data\": \"string\",\r\n    \"event_timestamp\": 0\r\n  },\r\n  \"event_type\": \"movie_dislike\",\r\n  \"language\": \"string\",\r\n  \"timezone\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"version\": \"string\",\r\n  \"client_data\": \"string\"\r\n},\r\n{\r\n  \"payload\": {\r\n    \"movie_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"user_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"event_data\": \"string\",\r\n    \"event_timestamp\": 0\r\n  },\r\n  \"event_type\": \"movie_dislike\",\r\n  \"language\": \"string\",\r\n  \"timezone\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"version\": \"string\",\r\n  \"client_data\": \"string\"\r\n},\r\n{\r\n  \"payload\": {\r\n    \"movie_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"user_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"event_data\": \"string\",\r\n    \"event_timestamp\": 0\r\n  },\r\n  \"event_type\": \"movie_dislike\",\r\n  \"language\": \"string\",\r\n  \"timezone\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"version\": \"string\",\r\n  \"client_data\": \"string\"\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/batch_produce",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"batch_produce"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "batch_produce_batch_count",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n  \"payload\": {\r\n    \"movie_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"user_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"event\": \"string\",\r\n    \"event_data\": \"string\",\r\n    \"event_timestamp\": 0\r\n  },\r\n  \"language\": \"string\",\r\n  \"timezone\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"version\": \"string\",\r\n  \"client_data\": \"string\"\r\n},\r\n{\r\n  \"payload\": {\r\n    \"movie_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"user_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"event\": \"string\",\r\n    \"event_data\": \"string\",\r\n    \"event_timestamp\": 0\r\n  },\r\n  \"language\": \"string\",\r\n  \"timezone\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"version\": \"string\",\r\n  \"client_data\": \"string\"\r\n},\r\n{\r\n  \"payload\": {\r\n    \"movie_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"user_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"event\": \"string\",\r\n    \"event_data\": \"string\",\r\n    \"event_timestamp\": 0\r\n  },\r\n  \"language\": \"string\",\r\n  \"timezone\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"version\": \"string\",\r\n  \"client_data\": \"string\"\r\n},\r\n{\r\n  \"payload\": {\r\n    \"movie_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"user_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"event\": \"string\",\r\n    \"event_data\": \"string\",\r\n    \"event_timestamp\": 0\r\n  },\r\n  \"language\": \"string\",\r\n  \"timezone\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"version\": \"string\",\r\n  \"client_data\": \"string\"\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/random_batch_produce?batch_count=100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"random_batch_produce"
+					],
+					"query": [
+						{
+							"key": "batch_count",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "produce_invalid",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"payload\": {\r\n    \"movie_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"user_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n    \"event_data\": \"string\",\r\n    \"event_timestamp\": 0\r\n  },\r\n  \"event_type\": 1,\r\n  \"language\": \"string\",\r\n  \"timezone\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"version\": \"string\",\r\n  \"client_data\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/produce",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"produce"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

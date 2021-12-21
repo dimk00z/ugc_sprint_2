@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  movies-etl-ugc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: movies-etl
+    command: >
+      python main.py
+    volumes:
+      - "./:/app/etl"
+    ports:
+      - "5000:8000"
+    env_file:
+      - .env
+    networks:
+      - ugc
+
+networks:
+  ugc:
+    name: ugc
+    driver: bridge

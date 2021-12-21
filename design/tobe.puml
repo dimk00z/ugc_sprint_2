@@ -1,0 +1,82 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+skinparam rectangle {
+	BackgroundColor DarkSeaGreen
+	FontStyle Bold
+	FontColor DarkGreen
+}
+
+actor Managers
+actor Clients
+actor Analyst
+
+
+package "Auth Service" {
+    interface nginx as nginx3
+    [Flask]
+    database Redis as redis2
+    database Postgres as postgres2
+}
+[Flask] <--> redis2: cache
+[Flask] <--> postgres2
+nginx3 <--> [Flask]: proxy
+
+cloud "OAuth2" {
+    node Yandex
+    node VK
+}
+[Flask] <..> OAuth2
+
+package "Admin panel" {
+    database Postgres
+    interface nginx as nginx
+    [Django]
+}
+[Django] <--> Postgres
+nginx <--> [Django]: proxy
+Managers <.left.> nginx: http
+
+
+package "ETL Service" {
+    database Elasticsearch
+    [ETL manager]
+}
+Postgres <.. [ETL manager]: extract
+[ETL manager] --> Elasticsearch: load
+
+
+package "Async API" {
+    interface nginx as nginx2
+    database Redis
+    [FastAPI]
+}
+[FastAPI] <--> Redis: cache
+Clients <..> nginx2: http
+nginx2 <--> [FastAPI]: proxy
+[FastAPI] ..> Elasticsearch
+[FastAPI] <..> nginx3: http
+
+rectangle TODO {
+    package "UGC Service" {
+        interface nginx as nginx4
+        database Kafka
+        database ClickHouse
+        [UGC API]
+        [ETL]
+    }
+}
+
+note as jwt_auth
+    JWT auth
+end note
+
+[UGC API] --> Kafka: save
+[ETL] -> Kafka: extract
+[ETL] -left-> ClickHouse: load
+nginx4 <-> [UGC API]: proxy
+Clients <..> nginx4: http
+Analyst <.up.> ClickHouse
+[UGC API] <..> jwt_auth
+
+@enduml

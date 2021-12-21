@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+actor Managers
+actor Clients
+
+
+package "Auth Service" {
+    interface nginx as nginx3
+    [Flask]
+    database Redis as redis2
+    database Postgres as postgres2
+}
+[Flask] <--> redis2: cache
+[Flask] <--> postgres2
+nginx3 <--> [Flask]: proxy
+
+cloud "OAuth2" {
+    node Yandex
+    node VK
+}
+[Flask] <..> OAuth2
+
+package "Admin panel" {
+    database Postgres
+    interface nginx as nginx
+    [Django]
+}
+[Django] <--> Postgres
+nginx <--> [Django]: proxy
+Managers <.left.> nginx: http
+
+
+package "ETL Service" {
+    database Elasticsearch
+    [ETL manager]
+}
+Postgres <.. [ETL manager]: extract
+[ETL manager] --> Elasticsearch: load
+
+
+package "Async API" {
+    interface nginx as nginx2
+    database Redis
+    [FastAPI]
+}
+[FastAPI] <--> Redis: cache
+Clients <..> nginx2: http
+nginx2 <--> [FastAPI]: proxy
+[FastAPI] ..> Elasticsearch
+[FastAPI] <..> nginx3: http
+
+
+@enduml
