@@ -19,10 +19,10 @@ jobs:
         pip install black mypy isort flake8
     
     - name: black
-        run: black --check .
+      run: black --check .
 
     - name: isort
-        run: isort --check .
+      run: isort --check .
 
 # jobs:
 #   codestyle:
