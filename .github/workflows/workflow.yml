@@ -29,4 +29,5 @@ jobs:
 
       - name: flake8
         run: flake8
-        args: ["--config=setup.cfg"]
+        with:
+          args: ["--config=setup.cfg"]
