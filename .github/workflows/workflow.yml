@@ -28,6 +28,13 @@ jobs:
     - name: flake8
       run: flake8 --config=setup.cfg
 
+    - name: mypy_api_ugc
+      run: mypy api_ugc 
+    
+    - name: mypy_etl
+      run: mypy etl
+
+
 # jobs:
 #   codestyle:
 #     name: codestyle
