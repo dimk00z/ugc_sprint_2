@@ -19,7 +19,7 @@ def transform(data):
 
 
 def order_batches(data: list):
-    organized_batches = {}
+    organized_batches: dict = {}
     for item in data:
         event_type, batch_item = item
         organized_batches[event_type].append(batch_item)

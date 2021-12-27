@@ -1,4 +1,4 @@
-from redis import StrictRedis
+from redis import StrictRedis  # type: ignore
 from redis_cache import RedisCache
 
 from core.settings import get_settings
