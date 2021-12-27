@@ -28,6 +28,5 @@ jobs:
         run: pip install flake8
 
       - name: flake8
-        run: flake8
-        with:
-          args: ["--config=setup.cfg"]
+        run: ["flake8","--config=setup.cfg"]
+      
