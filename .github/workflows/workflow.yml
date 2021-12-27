@@ -39,4 +39,8 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          Провека кода в ${{ GITHUB_REPOSITORY }} для Python ${{ matrix.python-version }} прошла успешно
+          Python ${{ matrix.python-version }}
+          ${{ github.actor }} created commit:
+          Commit message: ${{ github.event.commits[0].message }}
+          Repository: ${{ github.repository }}
+          See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
