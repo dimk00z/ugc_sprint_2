@@ -39,4 +39,4 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          Провека кода в ${{ repo }} для Python ${{ matrix.python-version }} прошла успешно
+          Провека кода в ${{ GITHUB_REPOSITORY }} для Python ${{ matrix.python-version }} прошла успешно
