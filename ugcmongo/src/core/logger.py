@@ -3,8 +3,6 @@ LOG_DEFAULT_HANDLERS = [
     "console",
 ]
 
-# https://docs.python.org/3/howto/logging.html
-# https://docs.python.org/3/howto/logging-cookbook.html
 
 LOGGING = {
     "version": 1,

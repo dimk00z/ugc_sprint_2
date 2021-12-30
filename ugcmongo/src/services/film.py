@@ -17,7 +17,7 @@ class FilmService:
     def __init__(self, redis: Redis, mongo: AsyncIOMotorClient):
         self.redis = redis
         self.mongo = mongo
-        self.database = mongo.films
+        self.database = self.mongo.films
         self.votes_collection = self.database.get_collection("votes")
         self.reviews_collection = self.database.get_collection("reviews")
 

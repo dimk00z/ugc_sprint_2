@@ -15,7 +15,7 @@ class UserService:
     def __init__(self, redis: Redis, mongo: AsyncIOMotorClient):
         self.redis = redis
         self.mongo = mongo
-        self.database = mongo.films
+        self.database = self.mongo.films
         self.collection = self.database.get_collection("bookmarks")
 
     async def get_user_bookmarks(self, user_id: str) -> Bookmarks or None:
