@@ -5,14 +5,12 @@
 
 В рамках спринта были реализованы следующие задачи:
 
-1. Описана архитектура системы в формате `plantuml`. 
-Подробное описание в директории [design](https://github.com/dimk00z/ugc_sprint_1/tree/main/design)
+1. Реализовано API для лайков, рейтингов  `ugcmongo`. 
+Подробное описание в директории [ugcmongo](https://github.com/dimk00z/ugc_sprint_1/tree/main/ugcmongo)
 
-2. Реализован API получения сообщений о событиях и записи их в Kafka.
-Подробное описание в директории [api_ugc](https://github.com/dimk00z/ugc_sprint_1/tree/main/api_ugc)
+2. Реализован [ELK](https://github.com/dimk00z/ugc_sprint_1/tree/main/ELK).
 
-3. Реализован ETL загрузки сообщений из Kafka в ClickHouse.
-Подробное описание в директории [ETL](https://github.com/dimk00z/ugc_sprint_1/tree/main/etl)
+3. Добавлены проверки для github actions [workflow.yml](https://github.com/dimk00z/ugc_sprint_2/blob/main/.github/workflows/workflow.yml).
 
 
 ### Выполнили

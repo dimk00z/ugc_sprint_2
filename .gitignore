@@ -60,3 +60,4 @@ staticfiles/
 .vscode/
 *.sqlite
 .DS_Store
+tmp/

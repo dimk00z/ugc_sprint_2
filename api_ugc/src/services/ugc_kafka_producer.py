@@ -21,7 +21,7 @@ class UGCKafkaProducer:
         self.hosts = ",".join(get_settings().kafka_settings.hosts)
         self.topics = get_settings().kafka_settings.topics
 
-    def _get_key(self) -> str:
+    def _get_key(self) -> bytes:
         return str(uuid4()).encode()
 
     async def produce(self, request_for_ugs: EventForUGS, producer: AIOKafkaProducer):
@@ -50,8 +50,8 @@ class UGCKafkaProducer:
 
     def _parse_batch_by_event_type(
         self, requests: list[EventForUGS]
-    ) -> dict[str, dict]:
-        result_batch = {}
+    ) -> dict[str, dict[int, str]]:
+        result_batch: dict = {}
         for request in requests:
             if (
                 request.event_type not in result_batch

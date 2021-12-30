@@ -34,10 +34,22 @@ class RedisSettings(BaseSettings):
     port: int = Field(6379, env="REDIS_PORT")
 
 
+class SentrySettings(BaseSettings):
+    sdk: str = Field("", env="SENTRY_DSN")
+    traces_sample_rate: float = 1.0
+
+
+class LogstashSettings(BaseSettings):
+    host: str = Field("localhost", env="LOGSTASH_HOST")
+    port: int = Field(5044, env="LOGSTASH_PORT")
+
+
 class Settings(BaseSettings):
     app = AppSettings()
     kafka_settings = KafkaSettings()
     redis_settings = RedisSettings()
+    sentry_settings = SentrySettings()
+    logstash_settings = LogstashSettings()
 
 
 @lru_cache
