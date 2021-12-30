@@ -1,6 +1,8 @@
 import asyncio
 import logging
 
+import logstash
+import sentry_sdk
 import uvicorn
 from aiokafka import AIOKafkaProducer
 from api.v1 import ugc_loader
@@ -36,6 +38,19 @@ kafka.aioproducer = AIOKafkaProducer(
 @app.on_event("startup")
 async def startup_event():
     await kafka.aioproducer.start()
+    sentry_sdk.init(
+        get_settings().sentry_settings.sdk,
+        traces_sample_rate=get_settings().sentry_settings.traces_sample_rate,
+    )
+    logger = logging.getLogger("uvicorn.access")
+    logger.setLevel(logging.INFO)
+    logger.addHandler(
+        logstash.LogstashHandler(
+            get_settings().logstash_settings.host,
+            get_settings().logstash_settings.port,
+            version=1,
+        )
+    )
 
 
 @app.on_event("shutdown")
