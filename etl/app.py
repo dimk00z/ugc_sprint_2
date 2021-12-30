@@ -19,7 +19,7 @@ def run(
     ch_driver.init_ch_database()
     while True:
         try:
-            batches = []
+            batches: list = []
             while len(batches) < batch_size:
                 for msg in kafka_consumer:
                     value = json.loads(msg.value)
