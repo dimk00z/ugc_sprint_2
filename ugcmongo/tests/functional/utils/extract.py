@@ -1,7 +1,13 @@
-from tests.functional.utils.models import (Bookmark, Bookmarks, FilmInfo,
-                                           FilmReview, FilmReviewInfo,
-                                           FilmVote, HTTPResponse,
-                                           StatusMessage)
+from tests.functional.utils.models import (
+    Bookmark,
+    Bookmarks,
+    FilmInfo,
+    FilmReview,
+    FilmReviewInfo,
+    FilmVote,
+    HTTPResponse,
+    StatusMessage,
+)
 
 
 async def extract_film_info(response: HTTPResponse) -> FilmInfo:
