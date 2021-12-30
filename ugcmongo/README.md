@@ -5,7 +5,7 @@ OpenAPI: [http://localhost/api/v1/docs](http://localhost/api/v1/docs)
 **Setup**
 1. Create .env file with sample:
 
-`$ mv env.sample .env`
+`$ cp env.sample .env`
 
 `$ vi .env`
 
