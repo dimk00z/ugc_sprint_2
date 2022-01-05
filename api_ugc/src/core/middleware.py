@@ -32,6 +32,16 @@ def apply_middleware(app: FastAPI):
             return get_error_json()
         return await call_next(request)
 
+    @app.middleware("http")
+    async def loggin(request: Request, call_next):
+        response = await call_next(request)
+        request_id = request.headers.get("X-Request-Id")
+        custom_logger = logging.LoggerAdapter(
+            logger, extra={"tag": "ugc_api_app", "request_id": request_id}
+        )
+        custom_logger.info(request)
+        return response
+
 
 @cache.cache()
 def parse_header(auth_header) -> bool:

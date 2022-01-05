@@ -1,9 +1,11 @@
 import logging
 
 import aioredis
+import logstash
+import sentry_sdk
 import uvicorn
 from api.v1 import film, user
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import ORJSONResponse
 from motor.motor_asyncio import AsyncIOMotorClient
 
@@ -37,15 +39,40 @@ async def startup():
         )
     )
 
+    sentry_sdk.init(
+        config.SENTRY_DSN,
+        traces_sample_rate=1.0,
+    )
+
+    logger = logging.getLogger("uvicorn.access")
+    logger.setLevel(logging.INFO)
+    logger.addHandler(
+        logstash.LogstashHandler(
+            config.LOGSTASH_HOST,
+            config.LOGSTASH_PORT,
+            version=1,
+        )
+    )
+
 
 @app.on_event("shutdown")
 async def shutdown():
     await redis.redis.close()
 
 
+@app.middleware("http")
+async def loggin(request: Request, call_next):
+    response = await call_next(request)
+    request_id = request.headers.get("X-Request-Id")
+    custom_logger = logging.LoggerAdapter(
+        logger, extra={"tag": "ugcmongo_api", "request_id": request_id}
+    )
+    custom_logger.info(request)
+    return response
+
+
 app.include_router(film.router, prefix="/api/v1/film", tags=["film"])
 app.include_router(user.router, prefix="/api/v1/user", tags=["user"])
-
 
 if __name__ == "__main__":
     uvicorn.run(
