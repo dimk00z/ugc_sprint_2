@@ -64,6 +64,7 @@ async def shutdown():
 async def loggin(request: Request, call_next):
     response = await call_next(request)
     request_id = request.headers.get("X-Request-Id")
+    logger = logging.getLogger("uvicorn.access")
     custom_logger = logging.LoggerAdapter(
         logger, extra={"tag": "ugcmongo_api", "request_id": request_id}
     )
